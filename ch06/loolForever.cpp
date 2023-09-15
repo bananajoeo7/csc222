@@ -2,6 +2,9 @@
 #include <cmath>
 using namespace std;
 
+/* When 1 is called it will run forever because true is always true so the while loop 
+will never end */
+
 void lool_forever(int n) {
     while (true) {
         cout << "n is now " << n << "." << endl;
