@@ -18,7 +18,9 @@ int main() {
     int d = 2;
 
     sequence(8);
+    cout << endl;
     sequence(9.0);
+    cout << endl;
     sequence(d);
 
 }
