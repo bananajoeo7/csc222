@@ -3,12 +3,18 @@
 #include <cmath>
 using namespace std;
 
-void tolower(string str) {
 
-
+string tolow(string str) {
+    for(int i = 0; i < str.length(); i++) {
+        if (str[i] >= 65 && str[i] <= 90) {
+            str[i] = str[i] + 32;
+        }
+    }
+    return str;
 }
 
 void backwards(string word) {
+    word = tolow(word);
     string oldWord = word;
     reverse(word.begin(), word.end());
     cout << "Your word reversed is " << word << endl;
