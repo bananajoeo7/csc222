@@ -17,18 +17,16 @@ int main() {
 
 void are_you_my_type(int num) {
   vector<int> factors = {1};
-  int sum = 0;
+  int sum = 1;
 
   cout << num << endl;
 
   for(int i = 2; i <= (num / 2); i++) {
     if (num % i == 0 && i != num) {
       factors.push_back(i);
-    }
-  }
 
-  for(int &num : factors) {
-    sum += num;
+      sum += i;
+    }
   }
 
   if (sum < num) {
@@ -40,8 +38,8 @@ void are_you_my_type(int num) {
   }
 
   cout << " Factors are: ";
-  for (int &num : factors) {
-    cout << num << " ";
+  for (int &factor : factors) {
+    cout << factor << " ";
   }
   cout << endl;
 
