@@ -1,32 +1,50 @@
+#include <cstdlib>
 #include <iostream>
-#include <string>
-#include <cmath>
+#include <vector>
 using namespace std;
 
-string sumADP(int num) {
-    // List goes here
-    int sum = 0;
-    string ADP = "";
-    for(int i = 0; i = num; i++) {
-        float division = num/i;
-        //check if division is a whole number/interger
-        // add division to list
-    }
+void are_you_my_type(int num);
 
-    for(int i = 0; i <= /*list.length()*/; i++) {
-        // iterate through list and add each number to sum
-    }
+int num;
 
-    if (sum > num) {
-        ADP = "Abundant"
-    } else if (sum < num) {
-        ADP = "Deficient"
-    } else {
-        ADP = "Perfect"
-    }
+int main() {
+  while (cin >> num) {
+    are_you_my_type(num);
+  }
 
-    cout << "Your number is " << ADP << endl;
-    cout << "The products of your number are " << /*print out list here*/ << endl;
-    cout << "The sum of your products is " << sum << endl;
+  return EXIT_SUCCESS;
+}
+
+void are_you_my_type(int num) {
+  vector<int> factors = {1};
+  int sum = 0;
+
+  cout << num << endl;
+
+  for(int i = 2; i <= (num / 2); i++) {
+    if (num % i == 0 && i != num) {
+      factors.push_back(i);
+    }
+  }
+
+  for(int &num : factors) {
+    sum += num;
+  }
+
+  if (sum < num) {
+    cout << "Deficient";
+  } else if (sum == num) {
+    cout << "Perfect";
+  } else {
+    cout << "Abundant";
+  }
+
+  cout << " Factors are: ";
+  for (int &num : factors) {
+    cout << num << " ";
+  }
+  cout << endl;
+
+  cout << "The sum of your factors is " << sum << endl << endl;
 }
 
