@@ -1,3 +1,6 @@
+// Authors: Trostin Geles, Caleb O'neal
+// Problems Website: https://www.seminolestate.edu/computers/competition/samples/2016
+
 #include <cstdlib>
 #include <iostream>
 #include <vector>
