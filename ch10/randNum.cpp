@@ -13,8 +13,8 @@ int main() {
 
 vector<int> randNum() {
     vector<int> randNumbers;
-    for(int i = 0; i <= 10; i++) {
-        int randNumber = (rand() % 10 + 1);
+    for(int i = 0; i < 10; i++) {
+        int randNumber = (rand() % 10) + 1;
         randNumbers.push_back(randNumber);
 
     }
