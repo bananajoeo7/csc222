@@ -1,11 +1,7 @@
+# Second Largest
 
-
-
-
-
-
-
-
+**Solved by:**
+    Trostin Geles and Marin McCormack
 
 ## Problem:
 
