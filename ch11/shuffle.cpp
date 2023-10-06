@@ -13,8 +13,8 @@ void printArray(int* array, int length) {
 
 void shufflePure(int* array, int length) {
     for (int i = 0; i < length; i++) {
-        int rand1 = 1+(rand() % 10);
-        int rand2 = 1+(rand() % 10);
+        int rand1 = 1+(rand() % length);
+        int rand2 = 1+(rand() % length);
         int a = array[rand1];
         int b = array[rand2];
 
@@ -29,8 +29,8 @@ void shuffleMod(int* array, int length) {
     srand((int) time(0));
     
     for (int i = 0; i < length; i++) {
-        int rand1 = 1+(rand() % 10);
-        int rand2 = 1+(rand() % 10);
+        int rand1 = 1+(rand() % length);
+        int rand2 = 1+(rand() % length);
         int a = array[rand1];
         int b = array[rand2];
 
