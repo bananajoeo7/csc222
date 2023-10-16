@@ -20,13 +20,16 @@ void shuffleArray(string* arr, int size) {
 }
 
 // you can check amount and see if ace will bust or not
-int ValueCount(string card, int size){
+int ValueCount(string* cards, int size){
     int totalVal = 0;
     int cardVal = 0;
     
     for(int i = 0; i < size; i++) {
+        string card = cards[i];
+        
+
         if (card[0] == 'A'){
-            if (totalVal + 11 > 21 ){
+            if (totalVal + 11 > 21 ) {
                 cardVal = 1;
             }else{
                 cardVal = 11;
@@ -39,7 +42,6 @@ int ValueCount(string card, int size){
 
         totalVal = totalVal + cardVal;
     }
-
 
     return totalVal;
 }
@@ -59,7 +61,7 @@ void printCardValues(string* cards, string d1){
 }
 
 void busted(string* deck, int size){
-
+    ValueCount(deck, size);
 
 }
 
