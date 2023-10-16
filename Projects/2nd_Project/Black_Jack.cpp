@@ -60,9 +60,12 @@ void printCardValues(string* cards, string d1){
     cout << endl;
 }
 
-void busted(string* deck, int size){
-    ValueCount(deck, size);
-
+void bust(string* deck, int size){
+    int handVal = ValueCount(deck, size);
+    
+    if (handVal > 21){
+        cout << "you lost" << endl;
+    }
 }
 
 void game(string* deck, int size){
@@ -88,8 +91,7 @@ void game(string* deck, int size){
     cout << "The dealers card is:" << endl;
     printCardValues(dValues, "true");
 
-    busted(pValues, 11);
-
+    bust(pValues, size);
 }
 
 int main() {
