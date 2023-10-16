@@ -20,22 +20,33 @@ void shuffleArray(string* arr, int size) {
 }
 
 // you can check amount and see if ace will bust or not
-int ReadValue(string card){
-    int cardValue = 0;
+int ValueCount(string card, int size){
+    int totalVal = 0;
+    int cardVal = 0;
     
-    if (card[0] == 'A'){
-        cardValue = 11;
-    } else if (card[0] == 'J' || card[0] == 'Q' || card[0] == 'K') {
-        cardValue = 10;
-    } else {
-        cardValue = card[0] - 48;       
-    } 
+    for(int i = 0; i < size; i++) {
+        if (card[0] == 'A'){
+            if (totalVal + 11 > 21 ){
+                cardVal = 1;
+            }else{
+                cardVal = 11;
+            }
+        } else if (card[0] == 'J' || card[0] == 'Q' || card[0] == 'K') {
+            cardVal = 10;
+        } else {
+            cardVal = card[0] - 48;       
+        } 
 
-    return cardValue;
+        totalVal = totalVal + cardVal;
+    }
+
+
+    return totalVal;
 }
 
 void printCardValues(string* cards, string d1){
     int amountC = sizeof(cards);
+
     if (d1 == "true"){
         cout << cards[0];
     } else {
@@ -47,7 +58,12 @@ void printCardValues(string* cards, string d1){
     cout << endl;
 }
 
-void Game(string* deck, int size){
+void busted(string* deck, int size){
+
+
+}
+
+void game(string* deck, int size){
     string dValues[11] = {};
     string pValues[11] = {};
 
@@ -70,6 +86,8 @@ void Game(string* deck, int size){
     cout << "The dealers card is:" << endl;
     printCardValues(dValues, "true");
 
+    busted(pValues, 11);
+
 }
 
 int main() {
@@ -81,7 +99,7 @@ int main() {
     int size = sizeof(cardDeck) / sizeof(cardDeck[0]);
 
     shuffleArray(cardDeck, size);
-    Game(cardDeck, size);
+    game(cardDeck, size);
 
     cout << "Shuffled array: ";
     for (int i = 0; i < size; i++) {
