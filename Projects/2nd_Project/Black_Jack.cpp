@@ -36,19 +36,23 @@ int ReadValue(string card){
 
 void printCardValues(string* cards, string d1){
     int amountC = sizeof(cards);
-
-    for (int i = 0; i < amountC; i++) {
+    if (d1 == "true"){
+        cout << cards[0];
+    } else {
+        for (int i = 0; i < amountC; i++) {
         cout << cards[i] << " ";
+        }
     }
+    
     cout << endl;
-
 }
 
 void Game(string* deck, int size){
     string dValues[11] = {};
     string pValues[11] = {};
 
-    cout << "The trashed card is:" << deck[0];
+    cout << "The trashed card is:" << endl;
+    cout << deck[0] << endl;
     cardcount += 1;
 
     pValues[0] = deck[cardcount];
@@ -61,22 +65,27 @@ void Game(string* deck, int size){
     cardcount += 1;
 
     cout << "Your hand is:" << endl;
-    printCardValues(pValues);
+    printCardValues(pValues, "false");
+
+    cout << "The dealers card is:" << endl;
+    printCardValues(dValues, "true");
 
 }
 
 int main() {
-    int testValue = ReadValue("Ks");
+//test
+/*    int testValue = ReadValue("Ks");
     cout << testValue << endl;
+*/
+    string cardDeck[] = {"As", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "10s", "Js", "Qs", "Ks", "Ad", "2d", "3d", "4d", "5d", "6d", "7d", "8d", "9d", "10d", "Jd", "Qd", "Kd", "Ac", "2c", "3c", "4c", "5c", "6c", "7c", "8c", "9c", "10c", "Jc", "Qc", "Kc", "Ah", "2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "10h", "Jh", "Qh", "K"};
+    int size = sizeof(cardDeck) / sizeof(cardDeck[0]);
 
-    string arr[] = {"As", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "10s", "Js", "Qs", "Ks", "Ad", "2d", "3d", "4d", "5d", "6d", "7d", "8d", "9d", "10d", "Jd", "Qd", "Kd", "Ac", "2c", "3c", "4c", "5c", "6c", "7c", "8c", "9c", "10c", "Jc", "Qc", "Kc", "Ah", "2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "10h", "Jh", "Qh", "K"};
-    int size = sizeof(arr) / sizeof(arr[0]);
-
-    shuffleArray(arr, size);
+    shuffleArray(cardDeck, size);
+    Game(cardDeck, size);
 
     cout << "Shuffled array: ";
     for (int i = 0; i < size; i++) {
-        cout << arr[i] << " ";
+        cout << cardDeck[i] << " ";
     }
     cout << endl;
 
