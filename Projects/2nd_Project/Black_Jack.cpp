@@ -1,13 +1,16 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include <array>
 using namespace std;
+
+int cardcount = 0;
 
 void shuffleArray(string* arr, int size) {
     srand(time(nullptr));
 
     for (int i = size - 1; i > 0; i--) {
-        int j = std::rand() % (i + 1);
+        int j = rand() % (i + 1);
         if (i != j) {
             string temp = *(arr + i);
             *(arr + i) = *(arr + j);
@@ -16,6 +19,7 @@ void shuffleArray(string* arr, int size) {
     }
 }
 
+// you can check amount and see if ace will bust or not
 int ReadValue(string card){
     int cardValue = 0;
     
@@ -30,8 +34,35 @@ int ReadValue(string card){
     return cardValue;
 }
 
+void printCardValues(string* cards, string d1){
+    int amountC = sizeof(cards);
+
+    for (int i = 0; i < amountC; i++) {
+        cout << cards[i] << " ";
+    }
+    cout << endl;
+
+}
+
 void Game(string* deck, int size){
-    
+    string dValues[11] = {};
+    string pValues[11] = {};
+
+    cout << "The trashed card is:" << deck[0];
+    cardcount += 1;
+
+    pValues[0] = deck[cardcount];
+    cardcount += 1;
+    dValues[0] = deck[cardcount];
+    cardcount += 1;
+    pValues[1] = deck[cardcount];
+    cardcount += 1;
+    dValues[1] = deck[cardcount];
+    cardcount += 1;
+
+    cout << "Your hand is:" << endl;
+    printCardValues(pValues);
+
 }
 
 int main() {
