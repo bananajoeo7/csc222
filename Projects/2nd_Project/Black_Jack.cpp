@@ -26,9 +26,11 @@ int ValueCount(string* cards, int size){
     
     for(int i = 0; i < size; i++) {
         string card = cards[i];
-        
+        int number = card[0];
 
-        if (card[0] == 'A'){
+        if (card[0] == 0){
+            continue;
+        } else if (card[0] == 'A'){
             if (totalVal + 11 > 21 ) {
                 cardVal = 1;
             }else{
@@ -36,11 +38,22 @@ int ValueCount(string* cards, int size){
             }
         } else if (card[0] == 'J' || card[0] == 'Q' || card[0] == 'K') {
             cardVal = 10;
+        } else if (card[0] == '1') {
+            if (card[1] == '0'){
+                cardVal = 10;
+            } else {
+                cardVal = 1;
+            }
+            
         } else {
-            cardVal = card[0] - 48;       
+            cardVal = card[0] - 48;
+        //    cout << number << endl;
+        //    cout << cardVal << endl;
         } 
-
-        totalVal = totalVal + cardVal;
+        totalVal += cardVal;
+        cout << cardVal << endl;
+        cout << totalVal << endl;
+        cout << endl;
     }
 
     return totalVal;
@@ -60,12 +73,46 @@ void printCardValues(string* cards, string d1){
     cout << endl;
 }
 
-void bust(string* deck, int size){
-    int handVal = ValueCount(deck, size);
+int bust(string* hand, int size){
+    int handVal = ValueCount(hand, size);
     
+    cout << "handVal: " << handVal << endl;
+
     if (handVal > 21){
         cout << "you lost" << endl;
+        return true;
     }
+    return false;
+}
+
+string* standOrHit(string* pVal, string* cDeck){
+    string response = "";
+    int pCount = 2;
+
+    while (true) {
+        cout << "Do you want to stand or hit? (s/h)" << endl;
+        cin >> response;
+        if (response == "h") {
+            pVal[pCount] = cDeck[cardcount];
+
+            cout << "Your current hand is:" << endl;
+            printCardValues(pVal, "false");
+
+            pCount += 1;
+            cardcount += 1;
+            int loss = bust(pVal, 11);
+            if (loss == true){
+                return pVal;
+            }
+        } else if (response == "s"){
+            return pVal;
+        } else {
+            cout << "please enter 's' or 'h'" << endl;
+        }
+
+    }
+
+    
 }
 
 void game(string* deck, int size){
@@ -91,7 +138,9 @@ void game(string* deck, int size){
     cout << "The dealers card is:" << endl;
     printCardValues(dValues, "true");
 
-    bust(pValues, size);
+    standOrHit(pValues, deck);
+
+//    bust(pValues, size);
 }
 
 int main() {
@@ -103,7 +152,6 @@ int main() {
     int size = sizeof(cardDeck) / sizeof(cardDeck[0]);
 
     shuffleArray(cardDeck, size);
-    game(cardDeck, size);
 
     cout << "Shuffled array: ";
     for (int i = 0; i < size; i++) {
@@ -111,7 +159,7 @@ int main() {
     }
     cout << endl;
 
-
+    game(cardDeck, size);
 
     return 0;
 }
