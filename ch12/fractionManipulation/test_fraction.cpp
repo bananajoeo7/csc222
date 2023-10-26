@@ -8,6 +8,9 @@ int main(){
     fraction fraction1 = {15, 4};
     fraction fraction2 = {16, 3};
 
+    string fractionString = fraction1.to_string();
+    cout << fractionString << endl;
+
     fraction2.print();
 
     fraction1.plus(fraction2);
