@@ -1,6 +1,8 @@
 struct fraction{
     int numerator, denominator;
 
+    fraction();
+
     void print();
     void plus(fraction f2);
     void minus(fraction f2);

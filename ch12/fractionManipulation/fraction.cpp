@@ -8,6 +8,11 @@ void fraction::print() {
     cout << numerator << "/" << denominator << endl;
 }
 
+fraction::fraction(){
+    numerator = 0;
+    denominator = 1;
+}
+
 void fraction::plus(fraction f2) {
     if (denominator == f2.denominator){
         numerator += f2.numerator;
