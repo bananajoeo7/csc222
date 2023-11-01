@@ -74,13 +74,15 @@ void printCardValues(string* cards, string d1){
     cout << endl;
 }
 
-bool bust(string* hand, int size){
+bool bust(string* hand, int size, bool d){
     int handVal = ValueCount(hand, size);
     
     cout << "handVal: " << handVal << endl;
 
     if (handVal > 21){
+        if ( d == false) {
         cout << "You lost. (T-T)" << endl;
+        }
         return true;
     }
     return false;
@@ -102,7 +104,7 @@ bool standOrHit(string* pVal, string* cDeck){
 
             pCount += 1;
             cardcount += 1;
-            int loss = bust(pVal, 11);
+            int loss = bust(pVal, 11, false);
             if (loss == true){
                 return true;
             }
@@ -123,7 +125,7 @@ bool dealerHand(string* dVal, string* dDeck){
     while (true) {
         int dHandVal = ValueCount(dVal, 11);
 
-        int dLoss = bust(dVal, 11);
+        int dLoss = bust(dVal, 11, true);
         if (dLoss == true) {
             cout << "Dealers current hand is: " << endl;
             printCardValues(dVal, "false");
