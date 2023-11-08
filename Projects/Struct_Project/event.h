@@ -1,11 +1,15 @@
 #include <string>
+using namespace std;
 
-struct event {
+struct Event {
     int event_id;
-    std::string event_name;
+    string event_name;
     int month, day, year;
 
-    event create_event();
-    void to_string();
+    Event();
+    Event(string, int, int, int);
+    string to_string();
     void cancel();
 };
+
+Event create_event();

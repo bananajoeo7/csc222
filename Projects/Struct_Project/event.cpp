@@ -52,7 +52,15 @@ int month_number(string mInput) {
     }
 }
 
-event create_event() {
+Event::Event() {
+    event_id = 0;
+    event_name = "Happy Time";
+    month = 1;
+    day = 1;
+    year = 2024;
+}
+
+Event create_event() {
     string name = "";
     string mTemp = "";
     int m = 0;
@@ -76,12 +84,12 @@ event create_event() {
     cin >> y;
     cout << endl;
 
-    event newEvent = {0, name, m, d, y};
+    Event newEvent = Event(name, m, d, y);
 
     return newEvent;
 }
 
-void event::to_string() {
+string Event::to_string() {
     if (event_id == 0) {
         cout << "You have a " << event_name << " event on " << month << "/" << day << "/" << year << endl;
     } else {
@@ -90,6 +98,14 @@ void event::to_string() {
 
 }
 
-void event::cancel() {
+void Event::cancel() {
     event_id = 1;
+}
+
+Event::Event(std::string name, int m, int d, int y){
+    event_id = 0;
+    event_name = name;
+    month = m;
+    day = d;
+    year = y;
 }
