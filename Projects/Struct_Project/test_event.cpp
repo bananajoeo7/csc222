@@ -1,25 +1,19 @@
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include "doctest.h"
 #include <iostream>
-#include "event.cpp"
+#include "event.h"
 #include <string>
 #include <array>
 using namespace std;
 
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "doctest.h"
-
 TEST_CASE("Test can create and render MyObject") {
     Event event;
-    CHECK(event.to_string() == "This is MyObject");
+    CHECK(event.to_string() == "You have a Happy Time event on  1/1/2024");
 }
 
-
-/*
-int main() {
-    event event1 = create_event();
-    event1.to_string();
-    event1.cancel();
-    event1.to_string();
+int taco() {
+    Event event;
+    cout << event.to_string() << endl;
 
     return 0;
 }
-*/

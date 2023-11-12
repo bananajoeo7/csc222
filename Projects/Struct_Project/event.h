@@ -2,8 +2,8 @@
 using namespace std;
 
 struct Event {
-    int event_id;
-    string event_name;
+    bool canceled;
+    string name;
     int month, day, year;
 
     Event();
@@ -11,5 +11,3 @@ struct Event {
     string to_string();
     void cancel();
 };
-
-Event create_event();

@@ -1,9 +1,41 @@
 #include <iostream>
 #include "event.h"
 #include <string>
-#include <array>
 using namespace std;
 
+Event::Event() {
+    canceled = 0;
+    name = "Happy Time";
+    month = 1;
+    day = 1;
+    year = 2024;
+}
+
+string Event::to_string() {
+    string event_string = "";
+
+    if (canceled == false) {
+        event_string = "You have a " + name + " event on " + std::to_string(month) + "/" + std::to_string(day) + "/" + std::to_string(year);
+    } else {
+        event_string = "The event was cancled.";
+    }
+
+    return event_string;
+}
+
+void Event::cancel() {
+    canceled = true;
+}
+
+Event::Event(std::string eName, int m, int d, int y){
+    canceled = false;
+    name = eName;
+    month = m;
+    day = d;
+    year = y;
+}
+
+/*
 int month_number(string mInput) {
     int mOutput = 0;
 
@@ -52,14 +84,6 @@ int month_number(string mInput) {
     }
 }
 
-Event::Event() {
-    event_id = 0;
-    event_name = "Happy Time";
-    month = 1;
-    day = 1;
-    year = 2024;
-}
-
 Event create_event() {
     string name = "";
     string mTemp = "";
@@ -88,24 +112,4 @@ Event create_event() {
 
     return newEvent;
 }
-
-string Event::to_string() {
-    if (event_id == 0) {
-        cout << "You have a " << event_name << " event on " << month << "/" << day << "/" << year << endl;
-    } else {
-        cout << "The event was cancled." << endl;
-    }
-
-}
-
-void Event::cancel() {
-    event_id = 1;
-}
-
-Event::Event(std::string name, int m, int d, int y){
-    event_id = 0;
-    event_name = name;
-    month = m;
-    day = d;
-    year = y;
-}
+*/
