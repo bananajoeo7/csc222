@@ -8,12 +8,6 @@ using namespace std;
 
 TEST_CASE("Test can create and render MyObject") {
     Event event;
-    CHECK(event.to_string() == "You have a Happy Time event on  1/1/2024");
+    CHECK(event.to_string() == "You have a Happy Time event on 1/1/2024");
 }
 
-int taco() {
-    Event event;
-    cout << event.to_string() << endl;
-
-    return 0;
-}
