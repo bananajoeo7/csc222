@@ -24,7 +24,7 @@ string Event::to_string() {
     if (canceled == false) {
         event_string = "You have a " + name + " event on " + std::to_string(month) + "/" + std::to_string(day) + "/" + std::to_string(year);
     } else {
-        event_string = "The event was cancled.";
+        event_string = "The event was canceled.";
     }
 
     return event_string;
