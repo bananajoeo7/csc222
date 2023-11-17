@@ -1,3 +1,10 @@
+/*
+Authors: Trostin Geles and Adonis Warren-Riley 
+Date: 17 November 2023
+Course: CSC 222: Object-Oriented Programming
+*/
+
+
 #include <string>
 using namespace std;
 

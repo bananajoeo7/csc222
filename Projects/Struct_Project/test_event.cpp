@@ -1,3 +1,10 @@
+/*
+Authors: Trostin Geles and Adonis Warren-Riley 
+Date: 17 November 2023
+Course: CSC 222: Object-Oriented Programming
+*/
+
+
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 #include <iostream>
