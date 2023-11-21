@@ -64,6 +64,7 @@ struct Deck {
     Deck();
     void swap_cards(int index1, int index2);
     int find_lowest(int l, int h);
+    void sort();
 };
 
 void Deck::swap_cards(int index1, int index2) {
@@ -94,15 +95,34 @@ int Deck::find_lowest(int l, int h) {
     return lowestIndex;
 }
 
-int main() {
-    Deck deck;
-
-    int lowestIndex = deck.find_lowest(0, 42);
-
-    if (lowestIndex != -1) {
-        cout << "Index of the lowest card between 0 and 42: " << lowestIndex << endl;
-        cout << "Lowest card: " << deck.cards[lowestIndex].to_string() << endl;
+void Deck::sort() {
+    for (int i = 0; i < cards.size() - 1; i++) {
+        int minIndex = find_lowest(i, cards.size() - 1);
+        if (minIndex != -1) {
+            swap_cards(i, minIndex);
+        }
     }
+}
+
+
+int main() {
+        Deck deck;
+
+        // Before sorting
+        cout << "Before sorting:" << endl;
+        for (const Card& card : deck.cards) {
+            cout << card.to_string() << endl;
+        }
+
+        // Sorting
+        deck.sort();
+
+        // After sorting
+        cout << "After sorting:" << endl;
+        for (const Card& card : deck.cards) {
+            cout << card.to_string() << endl;
+        }
+
 
     return 0;
 }
