@@ -1,4 +1,9 @@
 #include "Cards.h"
+#include <iostream>
+#include <cmath>
+#include <string>
+#include <vector>
+using namespace std;
 
 Card::Card() {
     suit = 0; rank = 0;
@@ -8,22 +13,31 @@ Card::Card(int s, int r) {
     suit = s; rank = r;
 }
 
-bool Card::equals(const Card& c1, const Card& c2) {
-    return c1.rank == c2.rank && c1.suit == c2.suit;
-}
-
-std::string Card::to_string() const
+string Card::to_string() const
 {
-    std::vector<std::string> suit_strings = {"Clubs", "Diamonds", "Hearts", "Spades"};
-    std::vector<std::string> rank_strings = {"", "2", "3", "4", "5", "6", "7",
+    vector<string> suit_strings = {"Clubs", "Diamonds", "Hearts", "Spades"};
+    vector<string> rank_strings = {"", "2", "3", "4", "5", "6", "7",
                                    "8", "9", "10", "Jack", "Queen", "King", "Ace"};
 
     return rank_strings[rank] + " of " + suit_strings[suit];
 }
 
-static std::vector<Card> build_deck() {
-    std::vector<Card> deck(52);
+bool Card::equals(const Card& c2) {
+    return (rank == c2.rank && suit == c2.suit);
+}
 
+int Card::find(const vector<Card>& deck) {
+    Card card = {suit, rank};
+    
+    for (int i = 0; i < deck.size(); i++) {
+        if (card.equals(deck[i])) return i;
+        }
+
+    return -1;
+}
+
+vector<Card> build_deck() {
+    vector<Card> deck(52);
     int i = 0;
     for (int suit = 0; suit <= 3; suit++) {
         for (int rank = 1; rank <= 13; rank++) {
@@ -32,7 +46,6 @@ static std::vector<Card> build_deck() {
             i++;
         }
     }
-
     return deck;
 }
 
@@ -63,3 +76,78 @@ int Deck::find_lowest(int l, int h) {
 
     return lowestIndex;
 }
+
+void Deck::sort() {
+    for (int i = 0; i < cards.size() - 1; i++) {
+        int minIndex = find_lowest(i, cards.size() - 1);
+        if (minIndex != -1) {
+            swap_cards(i, minIndex);
+        }
+    }
+}
+
+void Deck::merge_sort() {
+    merge_sort_recursive(0, cards.size() - 1);
+}
+
+void Deck::merge_sort_recursive(int low, int high) {
+    if (low < high) {
+        int mid = low + (high - low) / 2;
+
+        // Recursively sort the two halves
+        merge_sort_recursive(low, mid);
+        merge_sort_recursive(mid + 1, high);
+
+        // Merge the sorted halves
+        merge(low, mid, high);
+    }
+}
+
+void Deck::merge(int low, int mid, int high) {
+    int n1 = mid - low + 1;
+    int n2 = high - mid;
+
+    // Create temporary arrays to hold the two halves
+    vector<Card> left(n1);
+    vector<Card> right(n2);
+
+    // Copy data to temporary arrays left[] and right[]
+    for (int i = 0; i < n1; i++) {
+        left[i] = cards[low + i];
+    }
+    for (int j = 0; j < n2; j++) {
+        right[j] = cards[mid + 1 + j];
+    }
+
+    // Merge the two halves back into the original deck
+    int i = 0; // Initial index of first subarray
+    int j = 0; // Initial index of second subarray
+    int k = low; // Initial index of merged subarray
+
+    while (i < n1 && j < n2) {
+        if (left[i].rank < right[j].rank ||
+            (left[i].rank == right[j].rank && left[i].suit < right[j].suit)) {
+            cards[k] = left[i];
+            i++;
+        } else {
+            cards[k] = right[j];
+            j++;
+        }
+        k++;
+    }
+
+    // Copy the remaining elements of left[], if there are any
+    while (i < n1) {
+        cards[k] = left[i];
+        i++;
+        k++;
+    }
+
+    // Copy the remaining elements of right[], if there are any
+    while (j < n2) {
+        cards[k] = right[j];
+        j++;
+        k++;
+    }
+}
+

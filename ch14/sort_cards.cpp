@@ -65,6 +65,9 @@ struct Deck {
     void swap_cards(int index1, int index2);
     int find_lowest(int l, int h);
     void sort();
+    void merge_sort();
+    void merge_sort_recursive(int low, int high);
+    void merge(int low, int mid, int high);
 };
 
 void Deck::swap_cards(int index1, int index2) {
@@ -104,9 +107,74 @@ void Deck::sort() {
     }
 }
 
+void Deck::merge_sort() {
+    merge_sort_recursive(0, cards.size() - 1);
+}
+
+void Deck::merge_sort_recursive(int low, int high) {
+    if (low < high) {
+        int mid = low + (high - low) / 2;
+
+        // Recursively sort the two halves
+        merge_sort_recursive(low, mid);
+        merge_sort_recursive(mid + 1, high);
+
+        // Merge the sorted halves
+        merge(low, mid, high);
+    }
+}
+
+void Deck::merge(int low, int mid, int high) {
+    int n1 = mid - low + 1;
+    int n2 = high - mid;
+
+    // Create temporary arrays to hold the two halves
+    vector<Card> left(n1);
+    vector<Card> right(n2);
+
+    // Copy data to temporary arrays left[] and right[]
+    for (int i = 0; i < n1; i++) {
+        left[i] = cards[low + i];
+    }
+    for (int j = 0; j < n2; j++) {
+        right[j] = cards[mid + 1 + j];
+    }
+
+    // Merge the two halves back into the original deck
+    int i = 0; // Initial index of first subarray
+    int j = 0; // Initial index of second subarray
+    int k = low; // Initial index of merged subarray
+
+    while (i < n1 && j < n2) {
+        if (left[i].rank < right[j].rank ||
+            (left[i].rank == right[j].rank && left[i].suit < right[j].suit)) {
+            cards[k] = left[i];
+            i++;
+        } else {
+            cards[k] = right[j];
+            j++;
+        }
+        k++;
+    }
+
+    // Copy the remaining elements of left[], if there are any
+    while (i < n1) {
+        cards[k] = left[i];
+        i++;
+        k++;
+    }
+
+    // Copy the remaining elements of right[], if there are any
+    while (j < n2) {
+        cards[k] = right[j];
+        j++;
+        k++;
+    }
+}
 
 int main() {
         Deck deck;
+        Deck Mdeck;
 
         // Before sorting
         cout << "Before sorting:" << endl;
@@ -119,6 +187,21 @@ int main() {
 
         // After sorting
         cout << "After sorting:" << endl;
+        for (const Card& card : deck.cards) {
+            cout << card.to_string() << endl;
+        }
+
+        // Before sorting
+        cout << "Merge deck before sorting:" << endl;
+        for (const Card& card : deck.cards) {
+            cout << card.to_string() << endl;
+        }
+
+        // Sorting using merge sort
+        deck.merge_sort();
+
+        // After sorting
+        cout << "Merge deck after sorting:" << endl;
         for (const Card& card : deck.cards) {
             cout << card.to_string() << endl;
         }
