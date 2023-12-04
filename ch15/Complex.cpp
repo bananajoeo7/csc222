@@ -42,17 +42,9 @@ Complex Complex::operator - (const Complex& c) {
     return Complex(real - c.real, imag - c.imag);
 }
 
-enum Flag {POLAR};
-
 Complex::Complex(double m, double t, Flag) {
     mag = m; theta = t;
     polar = true;
-}
-
-Complex::Complex(double m, double t, Flag) {
-    mag = m; theta = t;
-    polar = true;
-    calculate_cartesian();
 }
 
 void Complex::calculate_cartesian() {
@@ -73,19 +65,7 @@ Complex Complex::operator / (Complex& c) {
     return Complex(mag / c.mag, theta + c.theta, POLAR);
 }
 
-Complex Complex::operator/(Complex& c)
-{
-    if (polar == false) calculate_polar();
-    if (c.polar == false) c.calculate_polar();
-
-    double divMag = mag / c.mag;
-    double divTheta = theta - c.theta;
-
-    return Complex(divMag, divTheta, POLAR);
-}
-
-double Complex::abs()
-{
+double Complex::abs() {
     if (polar == false) calculate_polar();
     return mag;
 }
