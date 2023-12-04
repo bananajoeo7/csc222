@@ -31,17 +31,17 @@ TEST_CASE("Test can subtract Complex numbers with -") {
 TEST_CASE("Test can multiply Complex numbers with *") {
     Complex c1(2, 3);
     Complex c2(4, 7);
-    Complex mult = c3 * c4; 
+    Complex mult = c1 * c2; 
     mult.calculate_cartesian();
-    CHECK(mult.str_cartesian() == "8.000000 + 21.000000i");
+    CHECK(mult.str_cartesian() == "-13.000000 + 26.000000i");
 }
 
 TEST_CASE("Test can divide Complex numbers with /") {
     Complex c1(4, 8);
     Complex c2(2, 4);
-    Complex divy = c5 / c6; 
+    Complex divy = c1 / c2; 
     divy.calculate_cartesian();
-    CHECK(divy.str_cartesian() == "2.000000 + 2.000000i");
+    CHECK(divy.str_cartesian() == "-1.200000 + 1.600000i");
 }
 
 TEST_CASE("Test abs of Complex number") {

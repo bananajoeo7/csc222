@@ -69,3 +69,8 @@ double Complex::abs() {
     if (polar == false) calculate_polar();
     return mag;
 }
+
+ostream &operator<<(ostream &os, const Complex &c) {
+  os << c.real << " + " << c.imag << "i";
+  return os;
+}

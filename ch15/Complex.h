@@ -48,4 +48,6 @@ public:
 
     void calculate_polar();
     void calculate_cartesian();
+
+    friend ostream & operator<<(ostream &os, const Complex &c);
 };
