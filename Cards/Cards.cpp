@@ -77,6 +77,27 @@ int Deck::find_lowest(int l, int h) {
     return lowestIndex;
 }
 
+int Deck::find_lowest_testV(int l, int h) {
+    int rIndex = l;
+    
+    if (l < h) {
+        cout << "pls enter an l lower than h" << endl;
+        return -1;
+    }
+
+    int i = (l + 1);
+
+    while (i <= h) {
+        if ((cards[i].rank == cards[rIndex].rank && cards[i].suit < cards[rIndex].suit)
+        || cards[i].rank < cards[rIndex].rank) {
+            rIndex = i;
+        }
+        i++;
+    }
+
+    return rIndex;
+}
+
 void Deck::sort() {
     for (int i = 0; i < cards.size() - 1; i++) {
         int minIndex = find_lowest(i, cards.size() - 1);

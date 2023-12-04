@@ -20,6 +20,7 @@ struct Deck {
     Deck();
     void swap_cards(int index1, int index2);
     int find_lowest(int l, int h);
+    int find_lowest_testV(int l, int h);
     void sort();
     void merge_sort();
     void merge_sort_recursive(int low, int high);
