@@ -13,8 +13,7 @@ class Complex
     bool polar;
 
     // private accessors
-    void calculate_polar();
-    void calculate_cartesian();
+    
 
 public:
     // constructors
@@ -40,10 +39,13 @@ public:
     Complex operator + (const Complex& c);
     Complex operator - (const Complex& c);
     Complex operator * (Complex& c);
-    Complex operator/(Complex& c);
+    Complex operator / (Complex& c);
 
     std::string str_cartesian();
     std::string str_polar();
 
     double abs();
+
+    void calculate_polar();
+    void calculate_cartesian();
 };
