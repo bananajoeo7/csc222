@@ -19,13 +19,17 @@ public:
     }
 
     // accessors
-    double get_x();
-    double get_y();
-    string str_point();
+    int get_x();
+    int get_y();
+    string to_string();
+
 
     // member functions
     Point operator + (const Point& p);
     Point operator - (const Point& p);
+    double distance(Point p2);
 
     friend ostream & operator<<(ostream &os, const Point &c);
 };
+
+Point operator * (int scalar, Point &p1);
