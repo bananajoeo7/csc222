@@ -1,3 +1,8 @@
+/*
+Authors: Trostin Geles and Akshay Kuchibatla
+December 2023
+*/
+
 #include <iostream>
 #include <string>
 #include <random>
