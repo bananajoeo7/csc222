@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <random>
 #include "14_1.h"
 using namespace std;
 
@@ -29,4 +30,31 @@ Card CardCollection::popCard() {
 // code box #6
 bool CardCollection::isEmpty() {
     return this->cards.size() == 0;
+}
+// code box #7
+int CardCollection::size() {
+    return this->cards.size();
+}
+// code box #8
+Card CardCollection::getCard(int index) {
+    return this->cards[index];
+}
+// code box #9
+Card CardCollection::lastCard() {
+    return this->cards[this->cards.size() - 1];
+}
+// code box #10
+void CardCollection::swapCards(int i, int j){
+    Card temp = cards[i];
+    cards[i] = cards[j];
+    cards[j] = temp;
+}
+// code box #11
+void CardCollection::shuffle() {
+    srand(time(nullptr));
+    for (int i = cards.size() - 1; i > 0; i--) {
+        int j = rand() % (i + 1);
+        swapCards(i, j);
+    }
+
 }
