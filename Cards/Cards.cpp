@@ -6,11 +6,21 @@
 using namespace std;
 
 Card::Card() {
-    suit = 0; rank = 0;
+    suit = NONE; 
+    rank = JOKER;
 }
 
-Card::Card(int s, int r) {
-    suit = s; rank = r;
+Card::Card(Suit s, Rank r) {
+    suit = s; 
+    rank = r;
+}
+
+Suit Card::getSuit() {
+    return suit;
+}
+
+Rank Card::getRank() {
+    return rank;
 }
 
 string Card::to_string() const
@@ -22,16 +32,16 @@ string Card::to_string() const
     return rank_strings[rank] + " of " + suit_strings[suit];
 }
 
-bool Card::equals(const Card& c2) {
-    return (rank == c2.rank && suit == c2.suit);
+bool Card::equals(Card& c2) {
+    return (rank == c2.getRank() && suit == c2.getSuit());
 }
 
-int Card::find(const vector<Card>& deck) {
+int Card::find(vector<Card>& deck) {
     Card card = {suit, rank};
     
     for (int i = 0; i < deck.size(); i++) {
         if (card.equals(deck[i])) return i;
-        }
+    }
 
     return -1;
 }
@@ -41,8 +51,8 @@ vector<Card> build_deck() {
     int i = 0;
     for (int suit = 0; suit <= 3; suit++) {
         for (int rank = 1; rank <= 13; rank++) {
-            deck[i].suit = suit;
-            deck[i].rank = rank;
+            deck[i].getSuit() = suit;
+            deck[i].getRank() = rank;
             i++;
         }
     }
@@ -68,8 +78,8 @@ int Deck::find_lowest(int l, int h) {
     int lowestIndex = l;
 
     for (int i = l + 1; i <= h; i++) {
-        if (cards[i].rank < cards[lowestIndex].rank ||
-            (cards[i].rank == cards[lowestIndex].rank && cards[i].suit < cards[lowestIndex].suit)) {
+        if (cards[i].getRank() < cards[lowestIndex].getRank() ||
+            (cards[i].getRank() == cards[lowestIndex].getRank() && cards[i].getSuit() < cards[lowestIndex].getSuit())) {
             lowestIndex = i;
         }
     }
@@ -88,8 +98,8 @@ int Deck::find_lowest_testV(int l, int h) {
     int i = (l + 1);
 
     while (i <= h) {
-        if ((cards[i].rank == cards[rIndex].rank && cards[i].suit < cards[rIndex].suit)
-        || cards[i].rank < cards[rIndex].rank) {
+        if ((cards[i].getRank() == cards[rIndex].getRank() && cards[i].getSuit() < cards[rIndex].getSuit())
+        || cards[i].getRank() < cards[rIndex].getRank()) {
             rIndex = i;
         }
         i++;
@@ -146,8 +156,8 @@ void Deck::merge(int low, int mid, int high) {
     int k = low; // Initial index of merged subarray
 
     while (i < n1 && j < n2) {
-        if (left[i].rank < right[j].rank ||
-            (left[i].rank == right[j].rank && left[i].suit < right[j].suit)) {
+        if (left[i].getRank() < right[j].getRank() ||
+            (left[i].getRank() == right[j].getRank() && left[i].getSuit() < right[j].getSuit())) {
             cards[k] = left[i];
             i++;
         } else {

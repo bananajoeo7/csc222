@@ -4,14 +4,33 @@
 #include <vector>
 using namespace std;
 
-struct Card {
+enum Suit {
+    JOKER,
+    TWO,
+    THREE,
+    FOUR,
+    FIVE,
+    SIX,
+    SEVEN,
+    EIGHT,
+    NINE,
+    TEN,
+    JACK,
+    QUEEN,
+    KING,
+    ACE
+};
+
+class Card {
     int suit, rank;
 
-    Card();
-    Card(int s, int r);
-    bool equals(const Card& c2);
-    int find(const vector<Card>& deck);
-    string to_string() const;
+    public:
+        Card();
+        Card(int s, int r);
+        bool equals(const Card& c2);
+        int find(const vector<Card>& deck);
+        string to_string() const;
+        
 };
 
 struct Deck {

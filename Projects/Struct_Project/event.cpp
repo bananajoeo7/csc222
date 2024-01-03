@@ -1,48 +1,18 @@
-/*
-Authors: Trostin Geles and Adonis Warren-Riley 
-Date: 17 November 2023
-Course: CSC 222: Object-Oriented Programming
-*/
-
-
 #include <iostream>
 #include "event.h"
 #include <string>
+#include <array>
 using namespace std;
 
-Event::Event() {
-    canceled = 0;
-    name = "Happy Time";
-    month = 1;
-    day = 1;
-    year = 2024;
-}
-
-string Event::to_string() {
-    string event_string = "";
-
-    if (canceled == false) {
-        event_string = "You have a " + name + " event on " + std::to_string(month) + "/" + std::to_string(day) + "/" + std::to_string(year);
-    } else {
-        event_string = "The event was canceled.";
-    }
-
-    return event_string;
-}
-
-void Event::cancel() {
-    canceled = true;
-}
-
-Event::Event(std::string eName, int m, int d, int y){
-    canceled = false;
-    name = eName;
+event(std::string name, int m, int d, int y) {
+    event_id = 1;
+    event_name = name;
     month = m;
     day = d;
     year = y;
+
 }
 
-/*
 int month_number(string mInput) {
     int mOutput = 0;
 
@@ -91,7 +61,7 @@ int month_number(string mInput) {
     }
 }
 
-Event create_event() {
+event create_event() {
     string name = "";
     string mTemp = "";
     int m = 0;
@@ -115,8 +85,20 @@ Event create_event() {
     cin >> y;
     cout << endl;
 
-    Event newEvent = Event(name, m, d, y);
+    event newEvent = event(name, m, d, y);
 
     return newEvent;
 }
-*/
+
+void event::to_string() {
+    if (event_id == 0) {
+        cout << "You have a " << event_name << " event on " << month << "/" << day << "/" << year << endl;
+    } else {
+        cout << "The event was cancled." << endl;
+    }
+
+}
+
+void event::cancel() {
+    event_id = 1;
+}

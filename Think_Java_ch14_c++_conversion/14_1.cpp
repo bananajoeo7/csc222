@@ -61,5 +61,4 @@ void CardCollection::shuffle() {
         int j = rand() % (i + 1);
         swapCards(i, j);
     }
-
 }
