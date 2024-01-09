@@ -2,36 +2,50 @@
 #include <SDL2/SDL.h>
 using namespace std;
 
-const int WIDTH = 800, HEIGHT = 600;
-
-int main(int argc, char *argv[]) 
+int main(int argc, char** argv)
 {
+    SDL_Window* window = nullptr;
+    SDL_Renderer* renderer = nullptr;
+
     SDL_Init(SDL_INIT_EVERYTHING);
+    SDL_CreateWindowAndRenderer(640*2, 480*1.5, 0, &window, &renderer);
+    SDL_RenderSetScale(renderer, 2, 2);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
 
-    SDL_Window *window = SDL_CreateWindow("Hello SDL World", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_ALLOW_HIGHDPI);
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_Rect rect;
+    rect.w = 100;
+    rect.h = 100;
+    rect.y = 0;
+    rect.x = 0;
 
-    if(NULL == window)
-    {
-        cout << "Could not create window:" << SDL_GetError() << endl;
-        return 1;
-    }
+    SDL_Rect rect2;
+    rect2.w = 100;
+    rect2.h = 100;
+    rect2.y = 50;
+    rect2.x = 50;
 
-    SDL_Event windowEvent;
+    SDL_RenderDrawRect(renderer, &rect);
+    SDL_RenderFillRect(renderer, &rect);
+    SDL_RenderDrawRect(renderer, &rect2);
+    SDL_RenderFillRect(renderer, &rect2);
 
-    while(true)
-    {
-        if(SDL_PollEvent(&windowEvent))
-        {
-            if(SDL_QUIT == windowEvent.type)
-            {
-                break;
-            }
-        }
-    }
+    SDL_Rect intersection;
 
-    SDL_DestroyWindow(window);
-    SDL_Quit();
+    SDL_IntersectRect(&rect, &rect2, &intersection);
 
-    return EXIT_SUCCESS;
+    SDL_RenderDrawRect(renderer, &rect);
+    SDL_RenderDrawRect(renderer, &rect2);
 
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_RenderFillRect(renderer, &intersection);
+
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_RenderDrawPoint(renderer, 640/2, 480/2);
+
+    SDL_RenderPresent(renderer);
+    SDL_Delay(10000);
+
+    return 0;
 }
