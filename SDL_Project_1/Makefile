@@ -1,2 +1,3 @@
 all:
-	g++ -ISDL2/include -LSDL2/lib -o main main.cpp -lmingw32 -lSDL2 -mwindows
+	g++ -I src/include -L src/lib -o main main.cpp -lmingw32 -lSDL2main -lSDL2 
+	
