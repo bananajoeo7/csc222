@@ -15,4 +15,4 @@ This [tutorial](https://www.youtube.com/watch?v=9Ca-RVPwnBE) sets SDL2 up in Win
 
 ## Notes:
 1. The screen will start black and you will have to click a tile to start.
-2. 
+2. Player 1 is RED and PLayer 2 is Black.
