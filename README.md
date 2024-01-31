@@ -1,4 +1,4 @@
-Jeff Elkners CSC222 computer programing class  
+Jeff Elkners CSC222 computer programming class  
 Class language: C++  
 Year: 2023-2024  
 Student Name: Trostin J. Geles  
