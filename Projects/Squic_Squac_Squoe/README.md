@@ -1,4 +1,5 @@
 # Squic_Squac_Squoe:
+By: Trostin Geles
 Description: Tic Tac Toe but uses red and black squares.
 ## Requirements:
 1. Need to have SDL2 installed on your device.
